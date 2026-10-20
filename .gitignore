@@ -6,3 +6,4 @@
 /demo/data
 /demo/uploads
 .env
+.DS_Store
