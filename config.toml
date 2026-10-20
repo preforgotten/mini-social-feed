@@ -1,0 +1,76 @@
+# mini-social-feed config — committed to git, contains NO secrets.
+# Secrets (JWT_SECRET, S3 keys, etc.) must be set via environment variables.
+
+[server]
+host = "0.0.0.0"
+port = 3000
+
+[database]
+# "memory" for dev/tests, "sqlite" for persistence
+backend = "sqlite"
+sqlite_path = "data/app.db"
+
+[media.local]
+enabled = true
+policy = "standard"
+path = "uploads"
+
+[media.s3]
+enabled = false
+# endpoint = "https://s3.amazonaws.com"
+# bucket = "my-bucket"
+# region = "us-east-1"
+
+[rate_limit]
+# Set to false to disable rate limiting entirely
+enabled = true
+
+[rate_limit.public.actions]
+login = { max_burst = 5.0, refill_per_sec = 0.2 }
+register = { max_burst = 3.0, refill_per_sec = 0.1 }
+read = { max_burst = 20.0, refill_per_sec = 2.0 }
+
+[rate_limit.human]
+default_tier = "minimal"
+
+[rate_limit.human.tiers.minimal.actions]
+login = { max_burst = 3.0, refill_per_sec = 0.1 }
+post_create = { max_burst = 5.0, refill_per_sec = 0.25 }
+media_upload = { max_burst = 3.0, refill_per_sec = 0.25 }
+read = { max_burst = 30.0, refill_per_sec = 5.0 }
+write = { max_burst = 10.0, refill_per_sec = 1.0 }
+
+[rate_limit.human.tiers.basic.actions]
+login = { max_burst = 5.0, refill_per_sec = 0.2 }
+post_create = { max_burst = 20.0, refill_per_sec = 1.0 }
+media_upload = { max_burst = 10.0, refill_per_sec = 0.5 }
+read = { max_burst = 100.0, refill_per_sec = 20.0 }
+write = { max_burst = 30.0, refill_per_sec = 5.0 }
+
+[rate_limit.human.tiers.power.actions]
+login = { max_burst = 10.0, refill_per_sec = 0.5 }
+post_create = { max_burst = 50.0, refill_per_sec = 5.0 }
+media_upload = { max_burst = 30.0, refill_per_sec = 3.0 }
+read = { max_burst = 200.0, refill_per_sec = 50.0 }
+write = { max_burst = 100.0, refill_per_sec = 20.0 }
+
+[rate_limit.agent]
+default_tier = "minimal"
+
+[rate_limit.agent.tiers.minimal.actions]
+post_create = { max_burst = 10.0, refill_per_sec = 0.5 }
+media_upload = { max_burst = 5.0, refill_per_sec = 0.25 }
+read = { max_burst = 50.0, refill_per_sec = 10.0 }
+write = { max_burst = 20.0, refill_per_sec = 2.0 }
+
+[rate_limit.agent.tiers.basic.actions]
+post_create = { max_burst = 50.0, refill_per_sec = 5.0 }
+media_upload = { max_burst = 25.0, refill_per_sec = 2.5 }
+read = { max_burst = 200.0, refill_per_sec = 50.0 }
+write = { max_burst = 100.0, refill_per_sec = 10.0 }
+
+[rate_limit.agent.tiers.power.actions]
+post_create = { max_burst = 200.0, refill_per_sec = 20.0 }
+media_upload = { max_burst = 100.0, refill_per_sec = 10.0 }
+read = { max_burst = 500.0, refill_per_sec = 100.0 }
+write = { max_burst = 300.0, refill_per_sec = 50.0 }

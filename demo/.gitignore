@@ -1,0 +1,6 @@
+# Demo data
+data/
+
+# Frontend build output
+../frontend/dist/
+../frontend/node_modules/

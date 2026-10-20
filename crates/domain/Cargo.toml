@@ -1,0 +1,11 @@
+[package]
+name = "mini-social-feed-domain"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+base64 = "0.22"
+hex = "0.4"
+serde = { version = "1", features = ["derive"] }
+uuid = { version = "1", features = ["v7"] }
+thiserror = "1"

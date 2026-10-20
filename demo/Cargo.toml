@@ -1,0 +1,18 @@
+[package]
+name = "demo"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+mini-social-feed-server = { path = "../crates/server" }
+mini-social-feed-data = { path = "../crates/data" }
+mini-social-feed-infra = { path = "../crates/infra" }
+mini-social-feed-app = { path = "../crates/application" }
+mini-social-feed-domain = { path = "../crates/domain" }
+axum = "0.7"
+tokio = { version = "1", features = ["full"] }
+serde_json = "1"
+reqwest = { version = "0.12", features = ["json", "multipart"] }
+tower-http = { version = "0.5", features = ["fs"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }

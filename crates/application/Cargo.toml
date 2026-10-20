@@ -1,0 +1,13 @@
+[package]
+name = "mini-social-feed-app"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+mini-social-feed-data = { path = "../data" }
+mini-social-feed-domain = { path = "../domain" }
+async-trait = "0.1"
+thiserror = "1"
+serde = { version = "1", features = ["derive"] }
+tokio = { version = "1", features = ["sync"] }
+tokio-stream = { version = "0.1", features = ["sync"] }
